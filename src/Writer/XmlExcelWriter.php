@@ -16,7 +16,7 @@ namespace Exporter\Writer;
  *
  * @author Vincent Touzet <vincent.touzet@gmail.com>
  */
-class XmlExcelWriter implements WriterInterface
+class XmlExcelWriter implements TypedWriterInterface
 {
     /**
      * @var string|null
@@ -68,6 +68,22 @@ class XmlExcelWriter implements WriterInterface
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    final public function getDefaultMimeType()
+    {
+        return 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    final public function getFormat()
+    {
+        return 'xlsx';
+    }
+    
     public function open()
     {
         $this->file = fopen($this->filename, 'wb');
